@@ -18,13 +18,15 @@ type DBClientOption struct {
 	DefaultHeaders     map[string]string
 	InsecureSkipVerify bool
 	TimeoutSeconds     int
+	client             http.Client
 }
 
-func (o *DBClientOption) getHTTPClient() http.Client {
+// Init initializes the client
+func (o *DBClientOption) Init() {
 	if o.TimeoutSeconds == 0 {
 		o.TimeoutSeconds = 10
 	}
-	client := http.Client{
+	o.client = http.Client{
 		Timeout: time.Duration(time.Duration(o.TimeoutSeconds) * time.Second),
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{
@@ -32,7 +34,10 @@ func (o *DBClientOption) getHTTPClient() http.Client {
 			},
 		},
 	}
-	return client
+}
+
+func (o *DBClientOption) getHTTPClient() http.Client {
+	return o.client
 }
 
 func (o *DBClientOption) getAuthHeader() map[string]string {
