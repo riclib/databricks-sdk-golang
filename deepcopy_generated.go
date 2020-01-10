@@ -14,6 +14,7 @@ func (in *DBClientOption) DeepCopyInto(out *DBClientOption) {
 			(*out)[key] = val
 		}
 	}
+	//in.client.DeepCopyInto(&out.client)
 	return
 }
 
