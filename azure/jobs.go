@@ -30,11 +30,14 @@ func (a JobsAPI) Create(jobSettings models.JobSettings) (models.Job, error) {
 	return job, err
 }
 
+// JobsListResponse is the response type returned by JobsList
+type JobsListResponse = struct {
+	Jobs []models.Job `json:"jobs,omitempty" url:"jobs,omitempty"`
+}{}
+
 // List lists all jobs
 func (a JobsAPI) List() ([]models.Job, error) {
-	var jobsList = struct {
-		Jobs []models.Job `json:"jobs,omitempty" url:"jobs,omitempty"`
-	}{}
+	var jobsList = JobsListResponse
 
 	resp, err := a.Client.performQuery(http.MethodGet, "/jobs/list", nil, nil)
 	if err != nil {
@@ -131,7 +134,7 @@ func (a JobsAPI) RunsSubmit(runName string, clusterSpec models.ClusterSpec, jobT
 	return run, err
 }
 
-// JobsRunsListResponse is a bit special because it has a HasMore field
+// JobsRunsListResponse is the response type returned by RunsList
 type JobsRunsListResponse struct {
 	Runs    []models.Run `json:"runs,omitempty" url:"runs,omitempty"`
 	HasMore bool         `json:"has_more,omitempty" url:"has_more,omitempty"`
