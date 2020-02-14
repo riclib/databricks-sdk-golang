@@ -33,7 +33,7 @@ func (a JobsAPI) Create(jobSettings models.JobSettings) (models.Job, error) {
 // JobsListResponse is the response type returned by JobsList
 type JobsListResponse = struct {
 	Jobs []models.Job `json:"jobs,omitempty" url:"jobs,omitempty"`
-}{}
+}
 
 // List lists all jobs
 func (a JobsAPI) List() ([]models.Job, error) {
