@@ -37,7 +37,7 @@ type JobsListResponse = struct {
 
 // List lists all jobs
 func (a JobsAPI) List() ([]models.Job, error) {
-	var jobsList = JobsListResponse
+	var jobsList JobsListResponse
 
 	resp, err := a.Client.performQuery(http.MethodGet, "/jobs/list", nil, nil)
 	if err != nil {

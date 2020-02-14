@@ -60,6 +60,10 @@ func (a DbfsAPI) Create(path string, overwrite bool) (DbfsCreateResponse, error)
 	}
 	resp, err := a.Client.performQuery(http.MethodPost, "/dbfs/create", data, nil)
 
+	if err != nil {
+		return createResponse, err
+	}
+
 	err = json.Unmarshal(resp, &createResponse)
 	return createResponse, err
 }
@@ -88,6 +92,10 @@ func (a DbfsAPI) GetStatus(path string) (models.FileInfo, error) {
 	}
 	resp, err := a.Client.performQuery(http.MethodGet, "/dbfs/get-status", data, nil)
 
+	if err != nil {
+		return fileInfo, err
+	}
+
 	err = json.Unmarshal(resp, &fileInfo)
 	return fileInfo, err
 }
@@ -107,6 +115,10 @@ func (a DbfsAPI) List(path string) ([]models.FileInfo, error) {
 		path,
 	}
 	resp, err := a.Client.performQuery(http.MethodGet, "/dbfs/list", data, nil)
+
+	if err != nil {
+		return listResponse.Files, err
+	}
 
 	err = json.Unmarshal(resp, &listResponse)
 	return listResponse.Files, err
@@ -175,6 +187,10 @@ func (a DbfsAPI) Read(path string, offset, length int64) (DbfsReadResponse, erro
 		length,
 	}
 	resp, err := a.Client.performQuery(http.MethodGet, "/dbfs/read", data, nil)
+
+	if err != nil {
+		return readResponse, err
+	}
 
 	err = json.Unmarshal(resp, &readResponseBase64)
 	if err != nil {

@@ -20,7 +20,7 @@ func PerformQuery(option DBClientOption, method, path string, data interface{}, 
 
 	requestHeaders := option.getDefaultHeaders()
 
-	if headers != nil && len(headers) > 0 {
+	if len(headers) > 0 {
 		for k, v := range headers {
 			requestHeaders[k] = v
 		}

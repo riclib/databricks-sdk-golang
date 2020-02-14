@@ -109,6 +109,10 @@ func (a ClustersAPI) Get(clusterID string) (models.ClusterInfo, error) {
 	}
 	resp, err := a.Client.performQuery(http.MethodGet, "/clusters/get-delete", data, nil)
 
+	if err != nil {
+		return clusterInfo, err
+	}
+
 	err = json.Unmarshal(resp, &clusterInfo)
 	return clusterInfo, err
 }
