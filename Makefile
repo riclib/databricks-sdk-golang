@@ -1,4 +1,4 @@
-all : build test docker-build
+all : build test
 
 build:
 	go build all
