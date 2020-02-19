@@ -1,9 +1,7 @@
 all : build test
 
-build:
-	go build all
-
 checks:
+	go build all
 	golangci-lint run
 
 test: checks
