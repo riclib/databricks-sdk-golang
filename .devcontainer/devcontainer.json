@@ -2,10 +2,10 @@
 {
 	"name": "Go",
 	"dockerComposeFile": "docker-compose.yml",
-    "service": "docker-in-docker",
+	"service": "docker-in-docker",
 	"workspaceFolder": "/go/src/github.com/xinsnake/databricks-sdk-golang",
 	"postCreateCommand": "",
-    "shutdownAction": "stopCompose",
+	"shutdownAction": "stopCompose",
 	"extensions": [
 		"ms-azuretools.vscode-docker",
 		"ms-vscode.go"
@@ -13,11 +13,34 @@
 	"settings": {
 		"terminal.integrated.shell.linux": "zsh",
 		"go.gopath": "/go",
-		"go.inferGopath": true,
 		"go.useLanguageServer": true,
+		"[go]": {
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": true,
+			},
+			// Optional: Disable snippets, as they conflict with completion ranking.
+			"editor.snippetSuggestions": "none",
+		},
+		"[go.mod]": {
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": true,
+			},
+		},
+		"gopls": {
+			"usePlaceholders": true, // add parameter placeholders when completing a function
+			// Experimental settings
+			"completeUnimported": true, // autocomplete unimported packages
+			"deepCompletion": true // enable deep completion
+		},
 		"go.toolsEnvVars": {
 			"GO111MODULE": "on"
 		},
+		"go.lintTool": "golangci-lint",
+		"go.lintFlags": [
+			"--fast"
+		],
 		"remote.extensionKind": {
 			"ms-azuretools.vscode-docker": "workspace"
 		}

@@ -1,4 +1,4 @@
-all : build test
+all : checks test
 
 checks:
 	go build all
