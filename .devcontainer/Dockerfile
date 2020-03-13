@@ -51,16 +51,7 @@ RUN apt-get update \
 RUN apt-get -y install git procps wget nano zsh inotify-tools jq
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
-
-ENV GO111MODULE=on
-
-
-
 COPY ./Makefile ./
 
 RUN mkdir -p /go/src/github.com/xinsnake/databricks-sdk-golang
 ENV SHELL /bin/bash
-
-
-# # Install golangci-lint
-# && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.23.8 \
