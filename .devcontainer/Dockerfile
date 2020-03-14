@@ -19,35 +19,25 @@ RUN apt-get update \
     && go get -x -d github.com/stamblerre/gocode 2>&1 \
     && go build -o gocode-gomod github.com/stamblerre/gocode \
     && mv gocode-gomod $GOPATH/bin/ \
-    # Install Go tools
-    && go get -u -v \
-        github.com/mdempsky/gocode \
-        github.com/uudashr/gopkgs/cmd/gopkgs \
-        github.com/ramya-rao-a/go-outline \
-        github.com/acroca/go-symbols \
-        github.com/godoctor/godoctor \
-        golang.org/x/tools/cmd/guru \
-        golang.org/x/tools/cmd/gorename \
-        github.com/rogpeppe/godef \
-        github.com/zmb3/gogetdoc \
-        github.com/haya14busa/goplay/cmd/goplay \
-        github.com/sqs/goreturns \
-        github.com/josharian/impl \
-        github.com/davidrjenni/reftools/cmd/fillstruct \
-        github.com/fatih/gomodifytags \
-        github.com/cweill/gotests/... \
-        golang.org/x/tools/cmd/goimports \
-        golang.org/x/lint/golint \
-        golang.org/x/tools/cmd/gopls \
-        github.com/alecthomas/gometalinter \
-        honnef.co/go/tools/... \
-        github.com/golangci/golangci-lint/cmd/golangci-lint \
-        github.com/mgechev/revive \
-        github.com/derekparker/delve/cmd/dlv 2>&1 \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+# Enable go modules
+ENV GO111MODULE=on
+
+# Install Go tools
+RUN \ 
+    # --> Go language server
+    go get golang.org/x/tools/gopls@v0.3.3 \
+    # --> GolangCI-lint
+    && curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sed 's/tar -/tar --no-same-owner -/g' | sh -s -- -b $(go env GOPATH)/bin \
+    # --> Delve for debugging
+    && go get github.com/go-delve/delve/cmd/dlv@v1.4.0 \
+    # --> Go-outline for extracting a JSON representation of the declarations in a Go source file
+    && go get -v github.com/ramya-rao-a/go-outline \
+    && rm -rf /go/src/ && rm -rf /go/pkg
 
 RUN apt-get update \
     # Install Docker CE CLI
@@ -60,11 +50,6 @@ RUN apt-get update \
 # Verify git, process tools installed
 RUN apt-get -y install git procps wget nano zsh inotify-tools jq
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-
-
-ENV GO111MODULE=on
-
-
 
 COPY ./Makefile ./
 
