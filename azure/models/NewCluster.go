@@ -11,8 +11,10 @@ type NewCluster struct {
 	CustomTags             []ClusterTag      `json:"custom_tags,omitempty" url:"custom_tags,omitempty"`
 	ClusterLogConf         *ClusterLogConf   `json:"cluster_log_conf,omitempty" url:"cluster_log_conf,omitempty"`
 	InitScripts            []InitScriptInfo  `json:"init_scripts,omitempty" url:"init_scripts,omitempty"`
+	DockerImage			   DockerImage
 	SparkEnvVars           map[string]string `json:"spark_env_vars,omitempty" url:"spark_env_vars,omitempty"`
-	EnableElasticDisk      bool              `json:"enable_elastic_disk,omitempty" url:"enable_elastic_disk,omitempty"`
+//	EnableElasticDisk      bool              `json:"enable_elastic_disk,omitempty" url:"enable_elastic_disk,omitempty"`
 	AutoterminationMinutes int32             `json:"autotermination_minutes,omitempty" url:"autotermination_minutes,omitempty"`
 	InstancePoolID         string            `json:"instance_pool_id,omitempty" url:"instance_pool_id,omitempty"`
+//	idempotency_token      string
 }
