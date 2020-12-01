@@ -18,16 +18,16 @@ func (a ClustersAPI) init(client DBClient) ClustersAPI {
 }
 
 // Create creates a new Spark cluster
-func (a ClustersAPI) Create(cluster models.NewCluster) (models.ClusterInfo, error) {
-	var clusterInfo models.ClusterInfo
-
+func (a ClustersAPI) Create(cluster models.NewCluster) (models.NewClusterResponse, error) {
+	var clusterResp models.NewClusterResponse
+	
 	resp, err := a.Client.performQuery(http.MethodPost, "/clusters/create", cluster, nil)
 	if err != nil {
-		return clusterInfo, err
+		return clusterResp, err
 	}
-
-	err = json.Unmarshal(resp, &clusterInfo)
-	return clusterInfo, err
+	
+	err = json.Unmarshal(resp, &clusterResp)
+	return clusterResp, err
 }
 
 // Edit edits the configuration of a cluster to match the provided attributes and size
