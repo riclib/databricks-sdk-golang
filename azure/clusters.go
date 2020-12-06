@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/xinsnake/databricks-sdk-golang/azure/models"
+	"github.com/xinsnake/databricks-sdk-golang/azure/clusters"
 )
 
 // ClustersAPI exposes the Clusters API
@@ -18,21 +19,21 @@ func (a ClustersAPI) init(client DBClient) ClustersAPI {
 }
 
 // Create creates a new Spark cluster
-func (a ClustersAPI) Create(cluster models.ClusterCreateReq) (models.ClusterCreateResp, error) {
-	var clusterResp models.ClusterCreateResp
+func (a ClustersAPI) Create(cluster clusters.CreateReq) (clusters.CreateResp, error) {
+	var createResp clusters.CreateResp
 	
 	resp, err := a.Client.performQuery(http.MethodPost, "/clusters/create", cluster, nil)
 	if err != nil {
-		return clusterResp, err
+		return createResp, err
 	}
 	
-	err = json.Unmarshal(resp, &clusterResp)
-	return clusterResp, err
+	err = json.Unmarshal(resp, &createResp)
+	return createResp, err
 }
 
 // Edit edits the configuration of a cluster to match the provided attributes and size
-func (a ClustersAPI) Edit(clusterEditReq models.ClusterEditReq) error {
-	_, err := a.Client.performQuery(http.MethodPost, "/clusters/edit", clusterEditReq, nil)
+func (a ClustersAPI) Edit(editReq clusters.EditReq) error {
+	_, err := a.Client.performQuery(http.MethodPost, "/clusters/edit", editReq, nil)
 	return err
 }
 
