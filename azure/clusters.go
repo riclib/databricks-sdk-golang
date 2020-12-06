@@ -18,8 +18,8 @@ func (a ClustersAPI) init(client DBClient) ClustersAPI {
 }
 
 // Create creates a new Spark cluster
-func (a ClustersAPI) Create(cluster models.NewCluster) (models.NewClusterResponse, error) {
-	var clusterResp models.NewClusterResponse
+func (a ClustersAPI) Create(cluster models.ClusterCreateReq) (models.ClusterCreateResp, error) {
+	var clusterResp models.ClusterCreateResp
 	
 	resp, err := a.Client.performQuery(http.MethodPost, "/clusters/create", cluster, nil)
 	if err != nil {
@@ -31,8 +31,8 @@ func (a ClustersAPI) Create(cluster models.NewCluster) (models.NewClusterRespons
 }
 
 // Edit edits the configuration of a cluster to match the provided attributes and size
-func (a ClustersAPI) Edit(clusterInfo models.ClusterInfo) error {
-	_, err := a.Client.performQuery(http.MethodPost, "/clusters/edit", clusterInfo, nil)
+func (a ClustersAPI) Edit(clusterEditReq models.ClusterEditReq) error {
+	_, err := a.Client.performQuery(http.MethodPost, "/clusters/edit", clusterEditReq, nil)
 	return err
 }
 
