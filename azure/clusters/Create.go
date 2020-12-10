@@ -1,7 +1,7 @@
 package clusters
 
 import (
-	"github.com/xinsnake/databricks-sdk-golang/azure/models"
+	models "github.com/xinsnake/databricks-sdk-golang/azure/models"
 )
 
 type CreateReq struct {

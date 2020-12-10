@@ -11,10 +11,10 @@ type EditReq struct {
 	CreatorUserName        string                    `json:"creator_user_name,omitempty" url:"creator_user_name,omitempty"`
 	Driver                 *models.SparkNode         `json:"driver,omitempty" url:"driver,omitempty"`
 	Executors              []models.SparkNode        `json:"executors,omitempty" url:"executors,omitempty"`
-	SparkContextID         int64              　　　　`json:"spark_context_id,omitempty" url:"spark_context_id,omitempty"`
-	JdbcPort               int32              　　　　`json:"jdbc_port,omitempty" url:"jdbc_port,omitempty"`
-	ClusterName            string             　　　　`json:"cluster_name,omitempty" url:"cluster_name,omitempty"`
-	SparkVersion           string             　　　　`json:"spark_version,omitempty" url:"spark_version,omitempty"`
+	SparkContextID         int64                     `json:"spark_context_id,omitempty" url:"spark_context_id,omitempty"`
+	JdbcPort               int32                     `json:"jdbc_port,omitempty" url:"jdbc_port,omitempty"`
+	ClusterName            string                    `json:"cluster_name,omitempty" url:"cluster_name,omitempty"`
+	SparkVersion           string                    `json:"spark_version,omitempty" url:"spark_version,omitempty"`
 	SparkConf              *models.SparkConfPair     `json:"spark_conf,omitempty" url:"spark_conf,omitempty"`
 	NodeTypeID             string                    `json:"node_type_id,omitempty" url:"node_type_id,omitempty"`
 	DriverNodeTypeID       string                    `json:"driver_node_type_id,omitempty" url:"driver_node_type_id,omitempty"`
