@@ -4,8 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/models"
-	jobsModels "github.com/xinsnake/databricks-sdk-golang/azure/jobs/models"
+	"github.com/xinsnake/databricks-sdk-golang/azure/jobs/models"
 )
 
 // JobsAPI exposes Jobs API endpoints
@@ -19,8 +18,8 @@ func (a JobsAPI) init(client DBClient) JobsAPI {
 }
 
 // Create creates a new job
-func (a JobsAPI) Create(jobSettings jobsModels.JobSettings) (jobsModels.Job, error) {
-	var job jobsModels.Job
+func (a JobsAPI) Create(jobSettings models.JobSettings) (models.Job, error) {
+	var job models.Job
 
 	resp, err := a.Client.performQuery(http.MethodPost, "/jobs/create", jobSettings, nil)
 	if err != nil {
@@ -33,11 +32,11 @@ func (a JobsAPI) Create(jobSettings jobsModels.JobSettings) (jobsModels.Job, err
 
 // JobsListResponse is the response type returned by JobsList
 type JobsListResponse = struct {
-	Jobs []jobsModels.Job `json:"jobs,omitempty" url:"jobs,omitempty"`
+	Jobs []models.Job `json:"jobs,omitempty" url:"jobs,omitempty"`
 }
 
 // List lists all jobs
-func (a JobsAPI) List() ([]jobsModels.Job, error) {
+func (a JobsAPI) List() ([]models.Job, error) {
 	var jobsList JobsListResponse
 
 	resp, err := a.Client.performQuery(http.MethodGet, "/jobs/list", nil, nil)
@@ -61,8 +60,8 @@ func (a JobsAPI) Delete(jobID int64) error {
 }
 
 // Get gets a job by ID
-func (a JobsAPI) Get(jobID int64) (jobsModels.Job, error) {
-	var job jobsModels.Job
+func (a JobsAPI) Get(jobID int64) (models.Job, error) {
+	var job models.Job
 
 	data := struct {
 		JobID int64 `json:"job_id,omitempty" url:"job_id,omitempty"`
@@ -79,10 +78,10 @@ func (a JobsAPI) Get(jobID int64) (jobsModels.Job, error) {
 }
 
 // Reset overwrites job settings
-func (a JobsAPI) Reset(jobID int64, jobSettings jobsModels.JobSettings) error {
+func (a JobsAPI) Reset(jobID int64, jobSettings models.JobSettings) error {
 	data := struct {
 		JobID       int64              `json:"job_id,omitempty" url:"job_id,omitempty"`
-		NewSettings jobsModels.JobSettings `json:"new_settings,omitempty" url:"new_settings,omitempty"`
+		NewSettings models.JobSettings `json:"new_settings,omitempty" url:"new_settings,omitempty"`
 	}{
 		jobID,
 		jobSettings,
@@ -92,12 +91,12 @@ func (a JobsAPI) Reset(jobID int64, jobSettings jobsModels.JobSettings) error {
 }
 
 // RunNow runs a job now and return the run_id of the triggered run
-func (a JobsAPI) RunNow(jobID int64, runParameters jobsModels.RunParameters) (jobsModels.Run, error) {
-	var run jobsModels.Run
+func (a JobsAPI) RunNow(jobID int64, runParameters models.RunParameters) (models.Run, error) {
+	var run models.Run
 
 	data := struct {
 		JobID int64 `json:"job_id,omitempty" url:"job_id,omitempty"`
-		jobsModels.RunParameters
+		models.RunParameters
 	}{
 		jobID,
 		runParameters,
@@ -112,13 +111,13 @@ func (a JobsAPI) RunNow(jobID int64, runParameters jobsModels.RunParameters) (jo
 }
 
 // RunsSubmit submit a one-time run
-func (a JobsAPI) RunsSubmit(runName string, clusterSpec jobsModels.ClusterSpec, jobTask jobsModels.JobTask, timeoutSeconds int32) (jobsModels.Run, error) {
-	var run jobsModels.Run
+func (a JobsAPI) RunsSubmit(runName string, clusterSpec models.ClusterSpec, jobTask models.JobTask, timeoutSeconds int32) (models.Run, error) {
+	var run models.Run
 
 	data := struct {
 		RunName string `json:"run_name,omitempty" url:"run_name,omitempty"`
-		jobsModels.ClusterSpec
-		jobsModels.JobTask
+		models.ClusterSpec
+		models.JobTask
 		TimeoutSeconds int32 `json:"timeout_seconds,omitempty" url:"timeout_seconds,omitempty"`
 	}{
 		runName,
@@ -137,7 +136,7 @@ func (a JobsAPI) RunsSubmit(runName string, clusterSpec jobsModels.ClusterSpec, 
 
 // JobsRunsListResponse is the response type returned by RunsList
 type JobsRunsListResponse struct {
-	Runs    []jobsModels.Run `json:"runs,omitempty" url:"runs,omitempty"`
+	Runs    []models.Run `json:"runs,omitempty" url:"runs,omitempty"`
 	HasMore bool         `json:"has_more,omitempty" url:"has_more,omitempty"`
 }
 
@@ -168,8 +167,8 @@ func (a JobsAPI) RunsList(activeOnly, completedOnly bool, jobID int64, offset, l
 }
 
 // RunsGet retrieve the metadata of a run
-func (a JobsAPI) RunsGet(runID int64) (jobsModels.Run, error) {
-	var run jobsModels.Run
+func (a JobsAPI) RunsGet(runID int64) (models.Run, error) {
+	var run models.Run
 
 	data := struct {
 		RunID int64 `json:"run_id,omitempty" url:"run_id,omitempty"`
@@ -220,7 +219,7 @@ func (a JobsAPI) RunsCancel(runID int64) error {
 type JobsRunsGetOutputResponse struct {
 	NotebookOutput models.NotebookOutput `json:"notebook_output,omitempty" url:"notebook_output,omitempty"`
 	Error          string                `json:"error,omitempty" url:"error,omitempty"`
-	Metadata       jobsModels.Run            `json:"metadata,omitempty" url:"metadata,omitempty"`
+	Metadata       models.Run            `json:"metadata,omitempty" url:"metadata,omitempty"`
 }
 
 // RunsGetOutput retrieves the output of a run

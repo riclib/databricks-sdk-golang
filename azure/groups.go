@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/models"
+	"github.com/xinsnake/databricks-sdk-golang/azure/groups/models"
 )
 
 // GroupsAPI exposes the Groups API

@@ -1,7 +1,7 @@
 package httpmodels
 
 import (
-	"github.com/xinsnake/databricks-sdk-golang/azure/models"
+	"github.com/xinsnake/databricks-sdk-golang/azure/clusters/models"
 )
 
 type ListNodeTypesRespItem struct {
