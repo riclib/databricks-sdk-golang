@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/clusters/models"
 	"github.com/xinsnake/databricks-sdk-golang/azure/clusters/httpmodels"
+	"github.com/xinsnake/databricks-sdk-golang/azure/clusters/models"
 )
 
 // ClustersAPI exposes the Clusters API
@@ -21,12 +21,12 @@ func (a ClustersAPI) init(client DBClient) ClustersAPI {
 // Create creates a new Spark cluster
 func (a ClustersAPI) Create(cluster httpmodels.CreateReq) (httpmodels.CreateResp, error) {
 	var createResp httpmodels.CreateResp
-	
+
 	resp, err := a.Client.performQuery(http.MethodPost, "/clusters/create", cluster, nil)
 	if err != nil {
 		return createResp, err
 	}
-	
+
 	err = json.Unmarshal(resp, &createResp)
 	return createResp, err
 }
@@ -185,7 +185,6 @@ func (a ClustersAPI) SparkVersions() ([]httpmodels.SparkVersionsRespItem, error)
 	err = json.Unmarshal(resp, &versionsList)
 	return versionsList.Versions, err
 }
-
 
 // Events retrieves a list of events about the activity of a cluster
 func (a ClustersAPI) Events(
