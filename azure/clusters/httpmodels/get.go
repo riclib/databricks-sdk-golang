@@ -31,6 +31,7 @@ type GetResp struct {
 	ClusterMemoryMb        int64                     `json:"cluster_memory_mb,omitempty" url:"cluster_memory_mb,omitempty"`
 	ClusterCores           float32                   `json:"cluster_cores,omitempty" url:"cluster_cores,omitempty"`
 	DefaultTags            map[string]string         `json:"default_tags,omitempty" url:"default_tags,omitempty"`
+	CustomTags             map[string]string      `json:"custom_tags,omitempty" url:"custom_tags,omitempty"`
 	ClusterLogStatus       *models.LogSyncStatus     `json:"cluster_log_status,omitempty" url:"cluster_log_status,omitempty"`
 	TerminationReason      *models.TerminationReason `json:"termination_reason,omitempty" url:"termination_reason,omitempty"`
 }
