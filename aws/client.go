@@ -1,6 +1,6 @@
 package aws
 
-import databricks "github.com/xinsnake/databricks-sdk-golang"
+import databricks "github.com/riclib/databricks-sdk-golang"
 
 // DBClient is the client for Azure implements DBClient
 type DBClient struct {

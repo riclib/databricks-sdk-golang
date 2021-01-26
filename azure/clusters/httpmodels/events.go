@@ -1,7 +1,7 @@
 package httpmodels
 
 import (
-	"github.com/xinsnake/databricks-sdk-golang/azure/clusters/models"
+	"github.com/riclib/databricks-sdk-golang/azure/clusters/models"
 )
 
 type EventsResp struct {

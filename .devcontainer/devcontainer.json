@@ -3,7 +3,7 @@
 	"name": "Go",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "docker-in-docker",
-	"workspaceFolder": "/go/src/github.com/xinsnake/databricks-sdk-golang",
+	"workspaceFolder": "/go/src/github.com/riclib/databricks-sdk-golang",
 	"postCreateCommand": "",
 	"shutdownAction": "stopCompose",
 	"extensions": [

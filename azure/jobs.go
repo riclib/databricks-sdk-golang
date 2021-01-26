@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/jobs/models"
+	"github.com/riclib/databricks-sdk-golang/azure/jobs/models"
 )
 
 // JobsAPI exposes Jobs API endpoints

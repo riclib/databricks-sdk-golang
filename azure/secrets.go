@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/secrets/models"
+	"github.com/riclib/databricks-sdk-golang/azure/secrets/models"
 )
 
 // SecretsAPI exposes the Secrets API

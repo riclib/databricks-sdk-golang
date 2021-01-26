@@ -53,5 +53,5 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
 
 COPY ./Makefile ./
 
-RUN mkdir -p /go/src/github.com/xinsnake/databricks-sdk-golang
+RUN mkdir -p /go/src/github.com/riclib/databricks-sdk-golang
 ENV SHELL /bin/bash

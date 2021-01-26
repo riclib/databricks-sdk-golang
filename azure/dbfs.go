@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/azure/dbfs/models"
+	"github.com/riclib/databricks-sdk-golang/azure/dbfs/models"
 )
 
 // DbfsAPI exposes the DBFS API

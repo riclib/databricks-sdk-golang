@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/xinsnake/databricks-sdk-golang/aws/models"
+	"github.com/riclib/databricks-sdk-golang/aws/models"
 )
 
 // WorkspaceAPI exposes the Workspace API
