@@ -12,7 +12,7 @@ type CreateReq struct {
 	SparkConf              map[string]string       `json:"spark_conf,omitempty" url:"spark_conf,omitempty"`
 	NodeTypeID             string                  `json:"node_type_id,omitempty" url:"node_type_id,omitempty"`
 	DriverNodeTypeID       string                  `json:"driver_node_type_id,omitempty" url:"driver_node_type_id,omitempty"`
-	CustomTags             []models.ClusterTag     `json:"custom_tags,omitempty" url:"custom_tags,omitempty"`
+	CustomTags             map[string]string       `json:"custom_tags,omitempty" url:"custom_tags,omitempty"`
 	ClusterLogConf         *models.ClusterLogConf  `json:"cluster_log_conf,omitempty" url:"cluster_log_conf,omitempty"`
 	InitScripts            []models.InitScriptInfo `json:"init_scripts,omitempty" url:"init_scripts,omitempty"`
 	DockerImage            models.DockerImage      `json:"docker_image,omitempty" url:"docker_image,omitempty"`
