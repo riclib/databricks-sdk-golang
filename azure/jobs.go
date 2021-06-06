@@ -141,6 +141,31 @@ type JobsRunsListResponse struct {
 }
 
 // RunsList lists runs from most recently started to least
+func (a JobsAPI) RunsListAll(activeOnly, completedOnly bool, offset, limit int32) (JobsRunsListResponse, error) {
+	var runlistResponse JobsRunsListResponse
+
+	var data struct {
+		ActiveOnly    bool  `json:"active_only,omitempty" url:"active_only,omitempty"`
+		CompletedOnly bool  `json:"completed_only,omitempty" url:"completed_only,omitempty"`
+		JobID         int64 `json:"job_id,omitempty" url:"job_id,omitempty"`
+		Offset        int32 `json:"offset,omitempty" url:"offset,omitempty"`
+		Limit         int32 `json:"limit,omitempty" url:"limit,omitempty"`
+	}
+	data.ActiveOnly = activeOnly
+	data.CompletedOnly = completedOnly
+	data.Offset = offset
+	data.Limit = limit
+
+	resp, err := a.Client.performQuery(http.MethodGet, "/jobs/runs/list", data, nil)
+	if err != nil {
+		return runlistResponse, err
+	}
+
+	err = json.Unmarshal(resp, &runlistResponse)
+	return runlistResponse, err
+}
+
+// RunsList lists runs from most recently started to least
 func (a JobsAPI) RunsList(activeOnly, completedOnly bool, jobID int64, offset, limit int32) (JobsRunsListResponse, error) {
 	var runlistResponse JobsRunsListResponse
 
