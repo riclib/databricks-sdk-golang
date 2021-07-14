@@ -21,4 +21,5 @@ type JobSettings struct {
 	RetryOnTimeout         bool                         `json:"retry_on_timeout,omitempty" url:"retry_on_timeout,omitempty"`
 	Schedule               *CronSchedule                `json:"schedule,omitempty" url:"schedule,omitempty"`
 	MaxConcurrentRuns      int32                        `json:"max_concurrent_runs,omitempty" url:"max_concurrent_runs,omitempty"`
+	CustomTags             map[string]string            `json:"custom_tags,omitempty" url:"custom_tags,omitempty"`
 }
