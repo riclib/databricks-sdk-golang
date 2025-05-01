@@ -20,4 +20,5 @@ type Run struct {
 	RunName              string           `json:"run_name,omitempty" url:"run_name,omitempty"`
 	RunPageURL           string           `json:"run_page_url,omitempty" url:"run_page_url,omitempty"`
 	RunType              string           `json:"run_type,omitempty" url:"run_type,omitempty"`
+	EndTime              int64            `json:"end_time,omitempty" url:"end_time,omitempty"`
 }
